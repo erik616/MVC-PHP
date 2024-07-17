@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Classe criada para estabelecer a conexão com o banco de dados
+ */
+
 abstract class Connection
 {
     

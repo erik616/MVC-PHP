@@ -1,5 +1,9 @@
 <?php 
 
+/**
+ *  As rotas da aplicação, e seus respectivos controllers e metodos
+ */
+
 $routes = [
     '/home' => "HomeController@index",
     '/create-bill' => "HomeController@create",

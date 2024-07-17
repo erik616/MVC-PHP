@@ -1,18 +1,24 @@
 <?php
 
+/**
+ * Nesta classe, ocorre a formatação das rotas,
+ * logo apos um loop e feito por elas em busca daquela que tem compatibilidade da rota atual,
+ * caso haja, é feito um direcionamento para o controlador da rota e seu metodo, 
+ * e caso tenha algum parametro ele e passado para o metodo
+ */
+
 require_once ROOT . "/app/Routes/routes.php";
 
 class Core
 {
-        // busca pelo controller da pagina pela url
     public function run($routes)
     {
         $url = "/";
-        
+
         isset($_SERVER["REQUEST_URI"]) ? $url = $_SERVER["REQUEST_URI"] : '/';
-        
-        ($url != "/") ? $url = rtrim($url, '/') : $url ;
-        
+
+        ($url != "/") ? $url = rtrim($url, '/') : $url;
+
         $routerFound = false;
 
         foreach ($routes as $path => $controller) {

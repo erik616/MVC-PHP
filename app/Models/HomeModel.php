@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Classe responsavel por fazer conexão com o banco de dados,
+ * nela há os metodos responsaveis por todas as querys feitas no banco de dados
+ */
+
 require_once __DIR__ . "/../database/connection.php";
 
 class HomeModel extends Connection
@@ -7,11 +12,13 @@ class HomeModel extends Connection
 
     private $connectionPDO;
 
+    // Construtor ira atribuir ao atributo connectionPDO a conexão
     public function __construct()
     {
         $this->connectionPDO = $this->connect();
     }
 
+    // metodo responsavel de buscar todas as contas
     public function fetch()
     {
         $queryContas = $this->connectionPDO->query("SELECT contas.valor, DATE_FORMAT(contas.data_pagar, '%d/%m/%Y') as data_pagar, contas.pago, contas.id_conta_pagar, empresa.nome as empresa FROM tbl_conta_pagar as contas INNER JOIN tbl_empresa as empresa ON contas.id_empresa = empresa.id_empresa");
@@ -19,7 +26,8 @@ class HomeModel extends Connection
 
         return $queryContas->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
+    // metodo responsavel de buscar as companias
     public function companys()
     {
         $queryEmpresa = $this->connectionPDO->query("SELECT * FROM tbl_empresa");
@@ -28,6 +36,7 @@ class HomeModel extends Connection
         return $queryEmpresa->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // metodo responsavel de cadastrar uma conta
     public function create($price, $date, $company)
     {
 
@@ -50,6 +59,7 @@ class HomeModel extends Connection
         }
     }
 
+    // metodo responsavel de pagar uma conta
     public function pay($id, $value)
     {
         try {
@@ -65,6 +75,7 @@ class HomeModel extends Connection
         }
     }
 
+    // metodo responsavel de editar uma conta
     public function edit($id, $price, $date)
     {
 
@@ -82,6 +93,7 @@ class HomeModel extends Connection
         }
     }
 
+    // metodo responsavel de apagar uma conta
     public function delete($id)
     {
         try {
@@ -96,6 +108,7 @@ class HomeModel extends Connection
         }
     }
 
+    // metodo responsavel por fazer o filtro das contas
     public function filter($params)
     {
         $filter = implode(" AND ", $params);
@@ -113,7 +126,7 @@ class HomeModel extends Connection
         }
     }
 
-
+    // metodo responsavel de buscar uma conta pelo identificador
     public function getBill($id)
     {
         $sql = "SELECT valor, data_pagar FROM tbl_conta_pagar WHERE id_conta_pagar=:id";

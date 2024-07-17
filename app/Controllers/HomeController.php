@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Controllador da home
+ */
+
 require_once __DIR__ . "/../Utils/RenderView.php";
 require_once __DIR__ . "/../Models/HomeModel.php";
 
@@ -8,11 +12,13 @@ class HomeController extends RenderView
 
     private $homeModel;
 
+    // o construtor ira atribuir a homeModel uma instancia
     public function __construct()
     {
         $this->homeModel = new HomeModel();
     }
 
+    // metodo que ira exibir na home as informações necessarias
     public function index()
     {
         $bills = $this->homeModel->fetch();
@@ -24,6 +30,7 @@ class HomeController extends RenderView
         ]);
     }
 
+    // metodo responsavel por criar uma conta
     public function create()
     {
         $price = $_POST['price'];
@@ -36,6 +43,7 @@ class HomeController extends RenderView
         header("Location: /home");
     }
 
+    // metodo que ira pagar a conta seguido as regras de negocio
     public function pay($id)
     {
         date_default_timezone_set('America/Sao_Paulo');
@@ -61,7 +69,7 @@ class HomeController extends RenderView
         header("Location: /home");
     }
 
-
+    // metodo responsavel por editar a conta pelo identificador da conta
     public function edit($id)
     {
         $price = $_POST['price'];
@@ -74,6 +82,7 @@ class HomeController extends RenderView
         header("Location: /home");
     }
 
+    // metodo chamado para apagar uma conta pelo identificador da conta
     public function delete($id)
     {
         $this->homeModel->delete($id[0]);
@@ -81,6 +90,13 @@ class HomeController extends RenderView
         header("Location: /home");
     }
 
+    /** 
+     * metodo responsavel por filtar contas pela regra de negocio estipulada,
+     * para haver um filtro deve ter no minimo uma das seguintes condições:
+     * preço e se ele deve ser MAIOR, MEOR ou IGUAL,
+     * data,
+     * e a empresa
+     * */ 
     public function filter()
     {
         $price = $_POST['price'];
@@ -112,6 +128,8 @@ class HomeController extends RenderView
         ]);
     }
 
+
+    // função para formatar o valor do preço da conta
     private function formatPrice($price)
     {
         return preg_replace('/[^0-9 | .]|( )+/', "", preg_replace("/,/", ".", $price));

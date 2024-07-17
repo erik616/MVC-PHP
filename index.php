@@ -10,6 +10,7 @@ define("ROOT", dirname(__FILE__)); // define a raiz do projeto
 
 require ROOT . "/app/Utils/Functions/Route.php"; // importa a função de validação da rota
 
+// autoload de arquivos
 spl_autoload_register(function($file){
     if(file_exists(ROOT. "/app/Utils/$file.php")){
         require_once ROOT. "/app/Utils/$file.php";

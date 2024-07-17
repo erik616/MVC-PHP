@@ -1,4 +1,7 @@
 <?php
+/**
+ *  Classe responsavel por redenrizar as views e passar para elas os argumentos e dados a serem exibidos
+ */
 
 class RenderView
 {
