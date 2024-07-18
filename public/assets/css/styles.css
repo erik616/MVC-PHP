@@ -2,7 +2,9 @@
     --gray: #333;
     --gray-secondy: #F4F4F4;
     --green: #2da42d;
+    --blue: #0f0f75;
     --blue-secondary: #dee2e6;
+    --red: #9b0707;
 }
 
 * {
@@ -29,14 +31,14 @@ section {
     height: 100%;
     width: 100%;
     flex-direction: column;
-    background-color: #7112ac;
+    background-color: var(--blue-secondary);
 }
 
 section > header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: var(--blue);
     box-shadow: -1px 9px 13px -7px rgba(0, 0, 0, 0.85);
     -webkit-box-shadow: -1px 9px 13px -7px rgba(0, 0, 0, 0.85);
     -moz-box-shadow: -1px 9px 13px -7px rgba(0, 0, 0, 0.85);
@@ -46,12 +48,13 @@ section > header {
 
 header nav {
     margin: 0 auto;
-    width: 80%;
+    width: 95%;
 }
 
 nav p {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: 700;
+    color: #fff;
 }
 
 article {
@@ -221,6 +224,11 @@ article {
     cursor: pointer;
 }
 
+.disable {
+    opacity: .25;
+    cursor: pointer;
+}
+
 #input_price{
     width: 100%;
     padding: 0 .2rem;
@@ -289,7 +297,7 @@ form button {
     border-radius: 4px;
     font-weight: bold;
     font-size: 1rem;
-    background: var(--green);
+    background: var(--blue);
     cursor: pointer;
     color: #fff;
 }

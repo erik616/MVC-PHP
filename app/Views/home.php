@@ -22,7 +22,7 @@
                         Verifique se os campos foram preenchidos corretamente
                     </p>
                 </div>
-                <h3>Criar conta:</h3>
+                <h3>Criar boleto:</h3>
                 <form action="/create-bill" method="post">
                     <div class="row">
                         <select name="company" id="companies">
@@ -47,7 +47,7 @@
             <article>
 
                 <header>
-                    <h3>Buscar por conta</h3>
+                    <h3>Buscar por boleto</h3>
                     <form action="/home/filter" method="post">
 
                         <span class="price_select">
@@ -89,7 +89,7 @@
                     <tbody>
                         <?php if (count($bills) < 1) : ?>
                             <tr class="row_table">
-                                <td>Ainda não há nenhuma conta!</td>
+                                <td>Ainda não há nenhum boleto!</td>
                             </tr>
                         <?php else : ?>
                             <?php foreach ($bills as $item) : ?>
@@ -105,6 +105,10 @@
                                     <td class="actions">
                                         <?php if (!$item['pago']) : ?>
                                             <button type="button" class="button pay" data-id=<?= $item['id_conta_pagar'] ?>>
+                                                <img src="../../public/assets/img/pay.svg" alt="">
+                                            </button>
+                                        <?php else : ?>
+                                            <button type="button" class="button disable">
                                                 <img src="../../public/assets/img/pay.svg" alt="">
                                             </button>
                                         <?php endif ?>
@@ -124,7 +128,7 @@
 
                 <div class="modal_update none">
                     <form action="" method="post">
-                        <h1>Atualizar conta <p></p>
+                        <h1>Atualizar boleto <p></p>
                         </h1>
 
                         <input name="date" type="date" id="date">

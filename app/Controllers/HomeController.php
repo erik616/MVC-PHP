@@ -56,11 +56,12 @@ class HomeController extends RenderView
         [$year, $mounth, $day] = explode("-", $dataLocal);
         [$year_bill, $mounth_bill, $day_bill] = explode("-", $date);
 
+        // REVER ESSE LOGICA
         if ($year_bill >= $year) {
-            if ($mounth <= $mounth_bill && $day < $day_bill) {
-                $value *= 0.95;
-            } else if ($day > $day_bill) {
+            if ($mounth_bill < $mounth || $mounth >= $mounth_bill && $day > $day_bill) {
                 $value *= 1.1;
+            } else if ($mounth <= $mounth_bill && $day < $day_bill) {
+                $value *= 0.95;
             }
         }
 
@@ -96,7 +97,7 @@ class HomeController extends RenderView
      * preço e se ele deve ser MAIOR, MEOR ou IGUAL,
      * data,
      * e a empresa
-     * */ 
+     * */
     public function filter()
     {
         $price = $_POST['price'];
@@ -112,7 +113,7 @@ class HomeController extends RenderView
         }
 
         if (!empty($date)) {
-            array_push($filter, "contas.data_pagar = $date");
+            array_push($filter, "contas.data_pagar = '$date'");
         }
 
         if ($company != "Empresas") {

@@ -1,5 +1,5 @@
 // seleciona o formulario de cadastro e seus elementos
-const form = document.querySelector(".form")
+const form = document.querySelector(".form form")
 const price = form.querySelector(".price")
 const button = form.querySelector("button")
 const date = form.querySelector("input[type=date]")
@@ -23,7 +23,7 @@ button.addEventListener("click", function (e) {
     }
     modal.classList.add("none")
 
-    form.submit() // caso não haja nenhum problema ele é submetido
+    form.submit()
 })
 
 

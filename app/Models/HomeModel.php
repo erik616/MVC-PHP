@@ -62,8 +62,9 @@ class HomeModel extends Connection
     // metodo responsavel de pagar uma conta
     public function pay($id, $value)
     {
+        $value = preg_replace("/,/", "", $value);
         try {
-            $sql = "UPDATE tbl_conta_pagar SET pago='1', valor=:value WHERE  id_conta_pagar=:id";
+            $sql = "UPDATE tbl_conta_pagar SET pago='1', valor=:value WHERE id_conta_pagar=:id";
 
             $update = $this->connectionPDO->prepare($sql);
             $update->bindValue(":id", $id);
